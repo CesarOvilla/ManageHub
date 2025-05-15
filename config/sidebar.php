@@ -36,7 +36,7 @@ return [
         [
             'label' => 'Proyectos',
             'icon' => 'folder',
-            'route' => 'dashboard',
+            'route' => 'dashboard.projects.index',
             'active_route' => 'dashboard.projects.*',
         ],
         [

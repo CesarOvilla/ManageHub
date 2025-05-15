@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\HomeController;
+use App\Http\Controllers\Dashboard\ProjectsController;
 use App\Http\Controllers\Dashboard\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,5 +28,14 @@ Route::middleware([
         Route::get('/', 'index')->name('index');
         Route::get('create', 'create')->name('create');
         Route::get('{user}/edit', 'edit')->name('edit');
+    });
+
+    Route::prefix('dashboard/projects')
+    ->as('dashboard.projects.')
+    ->controller(ProjectsController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        // Route::get('{project}/edit', 'edit')->name('edit');
     });
 });

@@ -24,3 +24,8 @@ Breadcrumbs::for('dashboard.users.edit', function (BreadcrumbTrail $trail, $user
     $trail->push($user->name, route('dashboard.users.edit', $user));
 });
 //  ! breadcrumbs de proyectos
+// dashboard > projects
+Breadcrumbs::for('dashboard.projects.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Proyectos', route('dashboard.projects.index'));
+});

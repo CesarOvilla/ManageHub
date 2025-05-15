@@ -2,26 +2,35 @@
 
 namespace App\Livewire\Dashboard\Users;
 
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
-use TallStackUi\Traits\Interactions;
-
-class UsersTable extends DataTableComponent
+use PowerComponents\LivewirePowerGrid\Button;
+use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use Illuminate\View\View;
+final class UsersTable extends PowerGridComponent
 {
-    use Interactions;
-    protected $model = User::class;
+    public string $tableName = 'user-table-egr3v5-table';
 
-    public $deleteId;
-
-    public function configure(): void
+    public function setUp(): array
     {
-        $this->setPrimaryKey('id');
+        // $this->showCheckBox();
+
+        return [
+            PowerGrid::header()
+                ->showSearchInput(),
+            PowerGrid::footer()
+                ->showPerPage()
+                ->showRecordCount(),
+        ];
     }
-    
-    public function builder(): Builder
+
+    public function datasource(): Builder
     {
         $user = Auth::user();
         $team = $user->currentTeam;
@@ -31,51 +40,60 @@ class UsersTable extends DataTableComponent
         }
     
         $excludedIds = [
-            $team->owner->id,  // Excluir al owner
-            $user->id,         // Excluir al usuario autenticado
+            // $team->owner->id,  // Excluir al owner
+            // $user->id,         // Excluir al usuario autenticado
         ];
     
         $userIds = $team->allUsers()->pluck('id')->diff($excludedIds);
     
         return User::query()->whereIn('id', $userIds);
     }
-    
+
+    public function relationSearch(): array
+    {
+        return [];
+    }
+
+    public function fields(): PowerGridFields
+    {
+        return PowerGrid::fields()
+            ->add('id')
+            ->add('name')
+            ->add('email');
+            // ->add('created_at');
+    }
 
     public function columns(): array
     {
         return [
-            Column::make("Id", "id")
-                ->sortable(),
-            Column::make("Name", "name")
-                ->sortable(),
-            Column::make("Email", "email")
-                ->sortable(),
-            Column::make("Acciones", 'id')
-                ->format(function ($id) {
-                    return view('datatables.users.row-actions', compact('id'));
-                }),
+            Column::make('Id', 'id'),
+            Column::make('Name', 'name')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Email', 'email')
+                ->sortable()
+                ->searchable(),
+
+            Column::action('Action')
         ];
     }
 
-    public function confirmDelete($id)
+    public function filters(): array
     {
-        $this->deleteId = $id;
-
-        $this->dialog()
-            ->question(__('panel.general.eliminar'), __('panel.usuarios.desea_eliminar'))
-            ->confirm(__('Yes'), 'deleteConfirmed')
-            ->cancel(__('No'), 'deleteCancelled')
-            ->send();
+        return [
+        ];
     }
 
-    public function deleteConfirmed()
+    #[\Livewire\Attributes\On('edit')]
+    public function edit($rowId): void
     {
-        User::find($this->deleteId)->delete();
-        $this->toast()->success(__('panel.usuarios.eliminado_correctamente'))->send();
+        $this->js('alert('.$rowId.')');
     }
 
-    public function deleteCancelled()
+    public function actionsFromView($row): View
     {
-        $this->deleteId = null;
+        return view('datatables.users.row-actions', ['id' => $row->id]);
     }
+
 }
