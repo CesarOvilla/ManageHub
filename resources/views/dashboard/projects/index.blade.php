@@ -9,7 +9,4 @@
 
     @livewire('dashboard.projects.projects-list')
 
-    {{-- @livewire('dashboard.home.my-tasks') --}}
-
-    {{-- @livewire('dashboard.users.users-table') --}}
 </x-app-layout>

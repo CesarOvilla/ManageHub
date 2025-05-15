@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Project;
 
 class ProjectsController extends Controller
 {
@@ -12,13 +12,18 @@ class ProjectsController extends Controller
         return view('dashboard.projects.index');
     }
 
-    // public function create()
-    // {
-    //     return view('dashboard.users.create');
-    // }
+    public function create()
+    {
+        return view('dashboard.projects.create');
+    }
 
-    // public function edit(User $user)
-    // {
-    //     return view('dashboard.users.edit', compact('user'));
-    // }
+    public function edit(Project $project)
+    {
+        return view('dashboard.projects.edit', compact('project'));
+    }
+
+    public function show(Project $project)
+    {
+        return view('dashboard.projects.show', compact('project'));
+    }
 }

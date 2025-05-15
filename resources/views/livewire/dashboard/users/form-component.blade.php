@@ -48,9 +48,7 @@
         </div>
 
         <div class="text-right pt-2">
-            <x-ts-button class="bg-primary-600 hover:bg-primary-700 text-white dark:bg-primary-500 dark:hover:bg-primary-600">
-                Guardar
-            </x-ts-button>
+            <x-ts-button type="submit" text="Guardar" />
         </div>
     </x-card>
 </form>

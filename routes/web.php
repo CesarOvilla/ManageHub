@@ -36,6 +36,7 @@ Route::middleware([
     ->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('create', 'create')->name('create');
-        // Route::get('{project}/edit', 'edit')->name('edit');
+        Route::get('{project}/edit', 'edit')->name('edit');
+        Route::get('{project}/show', 'show')->name('show');
     });
 });

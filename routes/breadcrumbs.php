@@ -29,3 +29,18 @@ Breadcrumbs::for('dashboard.projects.index', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
     $trail->push('Proyectos', route('dashboard.projects.index'));
 });
+// dashboard > projects > create
+Breadcrumbs::for('dashboard.projects.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard.projects.index');
+    $trail->push('Nuevo proyecto', route('dashboard.projects.create'));
+});
+// dashboard > projects > {project} > show
+Breadcrumbs::for('dashboard.projects.show', function (BreadcrumbTrail $trail, $project, $deliverable = null) {
+    $trail->parent('dashboard.projects.index');
+    $trail->push('Detalles - ' . $project->name, route('dashboard.projects.show', ['project' => $project, 'deliverable' => $deliverable]));
+});
+// dashboard > projects > {project} > edit
+Breadcrumbs::for('dashboard.projects.edit', function (BreadcrumbTrail $trail, $project) {
+    $trail->parent('dashboard.projects.show', $project);
+    $trail->push('Editar - ' . $project->name, route('dashboard.projects.edit', $project));
+});
