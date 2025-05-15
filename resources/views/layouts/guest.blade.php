@@ -5,7 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <script>
+        // Prevenir parpadeo (flash) aplicando o removiendo dark mode antes del render
+        const prefersDark = localStorage.getItem('dark_mode') === 'true';
+        if (prefersDark) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->

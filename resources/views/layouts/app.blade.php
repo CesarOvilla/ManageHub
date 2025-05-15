@@ -14,7 +14,7 @@
             document.documentElement.classList.remove('dark');
         }
     </script>
-    
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
@@ -42,7 +42,7 @@
                 isSidebarCollapsed ? 'lg:ps-20' : 'lg:ps-64',
                 'bg-slate-100 text-slate-800 dark:bg-gray-950 dark:text-slate-200',
             ]">
-            <div class="mx-auto w-full max-w-[90%] p-4 lg:p-8">
+            <div class="mx-auto w-full max-w-[90%] p-4 lg:p-8 ">
                 {{ $slot }}
             </div>
         </main>

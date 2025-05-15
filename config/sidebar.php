@@ -30,7 +30,7 @@ return [
         [
             'label' => 'Usuarios',
             'icon' => 'users',
-            'route' => 'dashboard',
+            'route' => 'dashboard.users.index',
             'active_route' => 'dashboard.users.*',
         ],
         [

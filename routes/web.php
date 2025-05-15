@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\UsersController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,4 +15,14 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+
+    Route::prefix('dashboard/users')
+    ->as('dashboard.users.')
+    ->controller(UsersController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::get('{user}/edit', 'edit')->name('edit');
+    });
 });
