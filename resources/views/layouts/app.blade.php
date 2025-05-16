@@ -30,7 +30,8 @@
     <!-- Include your favorite highlight.js stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
         rel="stylesheet">
-
+    <!-- Include the ApexCharts library -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <tallstackui:script />
     <!-- Scripts -->

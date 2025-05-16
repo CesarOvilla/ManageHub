@@ -91,3 +91,12 @@ Breadcrumbs::for('dashboard.events.edit', function ($trail, $event) {
     $trail->parent('dashboard.events.index');
     $trail->push($event->name, route('dashboard.events.edit', $event));
 });
+
+// ! breadcrumbs de métricas
+
+// dashboard > metricas
+
+Breadcrumbs::for('dashboard.metrics.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push(__('Metricas'), route('dashboard.metrics.index'));
+});

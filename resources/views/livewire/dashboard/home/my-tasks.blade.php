@@ -12,10 +12,12 @@
     {{-- Tabla verdaderamente responsiva --}}
     <div class="w-full overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
         <table class="min-w-[1000px] table-auto bg-white dark:bg-slate-900 text-sm text-slate-800 dark:text-slate-100">
-            <thead class="bg-slate-100 dark:bg-slate-800 text-xs uppercase font-medium text-slate-600 dark:text-slate-400 tracking-wider">
+            <thead
+                class="bg-slate-100 dark:bg-slate-800 text-xs uppercase font-medium text-slate-600 dark:text-slate-400 tracking-wider">
                 <tr>
                     @foreach (['Proyecto', 'Tarea', 'Estatus', 'Entregable', 'Tiempo', 'Acciones', '', 'Prioridad'] as $header)
-                        <th class="px-4 py-3 text-left whitespace-nowrap border-b border-slate-300 dark:border-slate-600">
+                        <th
+                            class="px-4 py-3 text-left whitespace-nowrap border-b border-slate-300 dark:border-slate-600">
                             {{ $header }}
                         </th>
                     @endforeach
@@ -24,15 +26,28 @@
 
             <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
 
-                  {{-- @forelse ($tasks as $task)
+                @forelse ($tasks as $task)
                     <tr
-                        class="transition {{ $task->is_urgent ? 'bg-red-100 hover:bg-red-50 dark:bg-red-900 dark:hover:bg-red-800' : 'hover:bg-gray-50 dark:hover:bg-gray-700' }}">
-                        <td class="py-3 px-4 text-gray-700 dark:text-gray-300">{{ $task->project->name }}</td>
-                        <td class="py-3 px-4 text-gray-700 dark:text-gray-300">{{ $task->name }}</td>
-                        <td class="py-3 px-4 text-gray-700 dark:text-gray-300">{{ $task->status }}</td>
-                        <td class="py-3 px-4 text-gray-700 dark:text-gray-300">{{ optional($task->deliverable)->name }}
+                        class="{{ $i === 3 ? 'bg-red-100 dark:bg-red-900 hover:bg-red-50 dark:hover:bg-red-800' : 'hover:bg-slate-50 dark:hover:bg-slate-800' }} transition">
+                        <td class="px-4 py-3 whitespace-nowrap">{{ $task->project->name }}</td>
+                        <td class="px-4 py-3 whitespace-nowrap">{{ $task->name }}</td>
+                        <td class="px-4 py-3 whitespace-nowrap">
+                            {{-- @php
+                                $status = ['En progreso', 'Pendiente', 'Pausada'][$i - 1];
+                                $color = match ($status) {
+                                    'En progreso' => 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
+                                    'Pendiente' => 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300',
+                                    'Pausada' => 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300',
+                                };
+                            @endphp --}}
+                            <span
+                                class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 whitespace-nowrap">
+                                {{ $task->status }}
+                            </span>
                         </td>
-                        <td class="py-3 px-4 text-gray-700 dark:text-gray-300">
+                        <td class="px-4 py-3 whitespace-nowrap">{{ optional($task->deliverable)->name }}</td>
+                        <td class="px-4 py-3 whitespace-nowrap">
+
                             <div wire:key="task-{{ $task->id }}-{{ $task->status }}" x-data="{
                                 elapsed: {{ $task->elapsed_time }} + ({{ $task->status == TaskStatusEnum::EN_PROGRESO->value
                                     ? 'Math.floor(Date.now() / 1000 - new Date(\'' .
@@ -60,31 +75,26 @@
                                 <span
                                     x-text="`${String(Math.floor(elapsed / 3600)).padStart(2, '0')}:${String(Math.floor((elapsed % 3600) / 60)).padStart(2, '0')}:${String(Math.floor(elapsed % 60)).padStart(2, '0')}`"></span>
                             </div>
+
                         </td>
-                        <td class="flex space-x-2 py-3 px-4">
-                            @if ($task->status === TaskStatusEnum::PAUSADA->value || $task->status === TaskStatusEnum::PENDIENTE->value)
-                                <button wire:click="startTask({{ $task->id }})"
-                                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition">
-                                    Iniciar
-                                </button>
-                            @elseif ($task->status === TaskStatusEnum::EN_PROGRESO->value)
-                                <button wire:click="pauseTask({{ $task->id }})"
-                                    class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded transition">
-                                    Pausar
-                                </button>
-                                <button wire:click="confirmStop({{ $task->id }})"
-                                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition">
-                                    Finalizar
-                                </button>
-                            @else
-                                <span class="text-gray-500 dark:text-gray-400">Finalizado</span>
-                            @endif
+                        <td class="px-4 py-3 whitespace-nowrap">
+                            <div class="flex flex-wrap items-center gap-2">
+                                @if ($task->status === TaskStatusEnum::PAUSADA->value || $task->status === TaskStatusEnum::PENDIENTE->value)
+                                    <x-ts-button color="success" size="sm"
+                                        wire:click="startTask({{ $task->id }})">Iniciar</x-ts-button>
+                                @elseif ($task->status === TaskStatusEnum::EN_PROGRESO->value)
+                                    <x-ts-button color="warning" size="sm"
+                                        wire:click="pauseTask({{ $task->id }})">Pausar</x-ts-button>
+                                    <x-ts-button color="danger" size="sm"
+                                        wire:click="confirmStop({{ $task->id }})">Finalizar</x-ts-button>
+                                @endif
+                            </div>
                         </td>
-                        <td class="py-3 px-4">
+                        <td class="px-4 py-3 text-center whitespace-nowrap">
                             @if ($task->deliverable)
                                 <x-ui.tooltip :text="__('panel.general.mostrar')">
                                     <a href="{{ route('dashboard.projects.edit-deliverable', [$task->project->id, $task->deliverable->id]) }}"
-                                        class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition">
+                                        class="inline-flex items-center text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition">
                                         @svg('heroicon-o-eye', 'w-5 h-5')
                                     </a>
                                 </x-ui.tooltip>
@@ -92,28 +102,30 @@
                                 @if ($task->ticket)
                                     <x-ui.tooltip :text="__('panel.general.mostrar')">
                                         <a href="{{ route('dashboard.tickets.show', $task->ticket->id) }}"
-                                            class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition">
+                                            class="inline-flex items-center text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition">
                                             @svg('heroicon-o-eye', 'w-5 h-5')
                                         </a>
                                     </x-ui.tooltip>
                                 @endif
                             @endif
                         </td>
-                        <td class="py-3 px-4">
+
+                        <td class="px-4 py-3 whitespace-nowrap">
                             <div class="space-x-2">
-                                <span class="text-gray-500 dark:text-gray-400">{{ $task->priority }}</span>
+                                <span class="text-xs text-slate-500 dark:text-slate-400">P -
+                                    {{ $task->priority }}</span>
                                 <x-ui.tooltip text="Aumentar Prioridad">
                                     <button wire:click="aumentarPrioridad({{ $task->id }})" type="button"
-                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 me-1 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                        <x-heroicon-o-chevron-up class="w-5 h-5" />
+                                        class="rounded-md bg-blue-100 hover:bg-blue-200 dark:bg-blue-800 dark:hover:bg-blue-700 p-1">
+                                        <x-heroicon-o-chevron-up class="w-4 h-4 text-blue-600 dark:text-blue-300" />
 
                                     </button>
                                 </x-ui.tooltip>
                                 @if ($task->priority > 1)
                                     <x-ui.tooltip text="Disminuir Prioridad">
                                         <button wire:click="disminuirPrioridad({{ $task->id }})" type="button"
-                                            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 me-1 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                                            <x-heroicon-o-chevron-down class="w-5 h-5" />
+                                            class="rounded-md bg-red-100 hover:bg-red-200 dark:bg-red-800 dark:hover:bg-red-700 p-1">
+                                            <x-heroicon-o-chevron-down class="w-4 h-4 text-red-600 dark:text-red-300" />
                                         </button>
                                     </x-ui.tooltip>
                                 @endif
@@ -121,66 +133,13 @@
 
                         </td>
                     </tr>
+
                 @empty
                     <tr>
-                        <td colspan="7" class="py-4 px-4 text-center text-gray-500 dark:text-gray-400">No hay tareas
+                        <td colspan="8" class="text-center py-4 text-slate-500 dark:text-slate-400">No hay tareas
                             disponibles.</td>
                     </tr>
-                @endforelse --}}
-
-                {{-- @forelse ($tasks as $task) --}}
-                @foreach ([1, 2, 3] as $i)
-                    <tr class="{{ $i === 3 ? 'bg-red-100 dark:bg-red-900 hover:bg-red-50 dark:hover:bg-red-800' : 'hover:bg-slate-50 dark:hover:bg-slate-800' }} transition">
-                        <td class="px-4 py-3 whitespace-nowrap">Proyecto {{ ['Alpha', 'Beta', 'Gamma'][$i - 1] }}</td>
-                        <td class="px-4 py-3 whitespace-nowrap">Tarea {{ $i }}</td>
-                        <td class="px-4 py-3 whitespace-nowrap">
-                            @php
-                                $status = ['En progreso', 'Pendiente', 'Pausada'][$i - 1];
-                                $color = match ($status) {
-                                    'En progreso' => 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
-                                    'Pendiente' => 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300',
-                                    'Pausada' => 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300',
-                                };
-                            @endphp
-                            <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold {{ $color }} whitespace-nowrap">
-                                {{ $status }}
-                            </span>
-                        </td>
-                        <td class="px-4 py-3 whitespace-nowrap">Entregable {{ $i }}</td>
-                        <td class="px-4 py-3 whitespace-nowrap">0{{ $i }}:1{{ $i }}:3{{ $i }}</td>
-                        <td class="px-4 py-3 whitespace-nowrap">
-                            <div class="flex flex-wrap items-center gap-2">
-                                @if ($i === 1)
-                                    <x-ts-button color="warning" size="sm">Pausar</x-ts-button>
-                                    <x-ts-button color="danger" size="sm">Finalizar</x-ts-button>
-                                @elseif ($i === 2 || $i === 3)
-                                    <x-ts-button color="success" size="sm">Iniciar</x-ts-button>
-                                @endif
-                            </div>
-                        </td>
-                        <td class="px-4 py-3 text-center whitespace-nowrap">
-                            <a href="#" class="inline-flex items-center text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition">
-                                @svg('heroicon-o-eye', 'w-5 h-5')
-                            </a>
-                        </td>
-                        <td class="px-4 py-3 whitespace-nowrap">
-                            <div class="flex items-center gap-2">
-                                <span class="text-xs text-slate-500 dark:text-slate-400">P{{ $i }}</span>
-                                <button class="rounded-md bg-blue-100 hover:bg-blue-200 dark:bg-blue-800 dark:hover:bg-blue-700 p-1">
-                                    @svg('heroicon-o-chevron-up', 'w-4 h-4 text-blue-600 dark:text-blue-300')
-                                </button>
-                                @if ($i > 1)
-                                    <button class="rounded-md bg-red-100 hover:bg-red-200 dark:bg-red-800 dark:hover:bg-red-700 p-1">
-                                        @svg('heroicon-o-chevron-down', 'w-4 h-4 text-red-600 dark:text-red-300')
-                                    </button>
-                                @endif
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-                {{-- @empty --}}
-                {{--     <tr><td colspan="8" class="text-center py-4 text-slate-500 dark:text-slate-400">No hay tareas disponibles.</td></tr> --}}
-                {{-- @endforelse --}}
+                @endforelse
             </tbody>
         </table>
     </div>

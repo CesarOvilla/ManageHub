@@ -61,7 +61,7 @@ return [
         [
             'label' => 'Metricas',
             'icon' => 'pie-chart',
-            'route' => 'dashboard',
+            'route' => 'dashboard.metrics.index',
             'active_route' => 'dashboard.metrics.*',
         ],
         [

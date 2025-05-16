@@ -60,9 +60,15 @@ class Project extends Model
 
     // Obtener solo el Cliente
     public function client()
-    {
+    {   
         return $this->users()->wherePivot('role', Roles::CLIENT)->first();
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
 
     public function team()
     {
