@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\EventsController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\ProjectsController;
 use App\Http\Controllers\Dashboard\TicketController;
@@ -49,5 +50,14 @@ Route::middleware([
         Route::get('create', 'create')->name('create');
         Route::get('{ticket}/edit', 'edit')->name('edit');
         Route::get('{ticket}/show', 'show')->name('show');
+    });
+
+    Route::prefix('dashboard/events')
+    ->as('dashboard.events.')
+    ->controller(EventsController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::get('{event}/edit', 'edit')->name('edit');
     });
 });

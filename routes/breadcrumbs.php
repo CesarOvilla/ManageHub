@@ -71,3 +71,23 @@ Breadcrumbs::for('dashboard.tickets.show', function (BreadcrumbTrail $trail, $ti
     $trail->parent('dashboard.tickets.index');
     $trail->push('Detalles - Ticket - #' . $ticket->id, route('dashboard.tickets.show', $ticket));
 });
+
+// ! breadcrumbs de eventos
+
+
+// dashboard > events
+
+Breadcrumbs::for('dashboard.events.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push(__('Eventos'), route('dashboard.events.index'));
+});
+
+Breadcrumbs::for('dashboard.events.create', function ($trail) {
+    $trail->parent('dashboard.events.index');
+    $trail->push(__('Agregar evento'), route('dashboard.events.create'));
+});
+
+Breadcrumbs::for('dashboard.events.edit', function ($trail, $event) {
+    $trail->parent('dashboard.events.index');
+    $trail->push($event->name, route('dashboard.events.edit', $event));
+});

@@ -55,7 +55,7 @@ return [
         [
             'label' => 'Eventos',
             'icon' => 'calendar',
-            'route' => 'dashboard',
+            'route' => 'dashboard.events.index',
             'active_route' => 'dashboard.events.*',
         ],
         [
