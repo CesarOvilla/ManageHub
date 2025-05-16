@@ -1,0 +1,324 @@
+/* Dark mode styles for Quill Editor */
+.dark .ql-container {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+}
+
+.dark .ql-editor {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+}
+
+.dark .ql-editor.ql-blank::before {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.dark .ql-editor blockquote {
+    border-left: 4px solid #555;
+    color: #bbb;
+}
+
+.dark .ql-editor pre,
+.dark .ql-editor code {
+    background-color: #333;
+    color: #f8f8f2;
+}
+
+.dark .ql-editor pre.ql-syntax {
+    background-color: #282c34;
+    color: #abb2bf;
+}
+
+.dark .ql-bubble {
+    background-color: #252526;
+    color: #d4d4d4;
+}
+
+.dark .ql-bubble .ql-toolbar {
+    background-color: #252526;
+    border: 1px solid #3a3a3a;
+}
+
+.dark .ql-bubble .ql-tooltip {
+    background-color: #333;
+    color: #fff;
+}
+
+.dark .ql-bubble .ql-tooltip-arrow {
+    border-bottom: 6px solid #333;
+}
+
+.dark .ql-bubble .ql-toolbar button:hover,
+.dark .ql-bubble .ql-toolbar button:focus,
+.dark .ql-bubble .ql-toolbar button.ql-active {
+    color: #fff;
+}
+
+.dark .ql-bubble .ql-toolbar button:hover .ql-fill,
+.dark .ql-bubble .ql-toolbar button:hover .ql-stroke {
+    fill: #fff;
+    stroke: #fff;
+}
+
+.dark .ql-bubble .ql-toolbar .ql-picker-label,
+.dark .ql-bubble .ql-toolbar .ql-picker-item {
+    color: #bbb;
+}
+
+.dark .ql-bubble .ql-toolbar .ql-picker-options {
+    background-color: #333;
+}
+
+.dark .ql-bubble .ql-toolbar .ql-picker.ql-expanded .ql-picker-label {
+    color: #fff;
+}
+
+.dark .ql-bubble .ql-toolbar .ql-picker.ql-expanded .ql-picker-options {
+    background-color: #252526;
+}
+
+.dark .ql-bubble .ql-color-picker .ql-picker-item {
+    border: 1px solid #555;
+}
+
+.dark .ql-bubble .ql-editor a {
+    color: #8ab4f8;
+}
+
+.dark .ql-bubble .ql-editor a:hover {
+    text-decoration: underline;
+}
+
+/* Dark mode for Quill Background Colors */
+.dark .ql-editor .ql-bg-black {
+    background-color: #111;
+}
+.dark .ql-editor .ql-bg-red {
+    background-color: #8b0000;
+}
+.dark .ql-editor .ql-bg-orange {
+    background-color: #ff6600;
+}
+.dark .ql-editor .ql-bg-yellow {
+    background-color: #cccc00;
+}
+.dark .ql-editor .ql-bg-green {
+    background-color: #006600;
+}
+.dark .ql-editor .ql-bg-blue {
+    background-color: #0033cc;
+}
+.dark .ql-editor .ql-bg-purple {
+    background-color: #6600cc;
+}
+
+/* Dark mode for Quill Text Colors */
+.dark .ql-editor .ql-color-white {
+    color: #fff;
+}
+.dark .ql-editor .ql-color-red {
+    color: #ff3333;
+}
+.dark .ql-editor .ql-color-orange {
+    color: #ff9900;
+}
+.dark .ql-editor .ql-color-yellow {
+    color: #ffff33;
+}
+.dark .ql-editor .ql-color-green {
+    color: #33cc33;
+}
+.dark .ql-editor .ql-color-blue {
+    color: #3399ff;
+}
+.dark .ql-editor .ql-color-purple {
+    color: #cc66ff;
+}
+
+/* identacion */
+.ql-editor ol li.ql-indent-1 {
+    counter-increment: list-1;
+  }
+  .ql-editor ol li.ql-indent-1:before {
+    content: counter(list-1, lower-alpha) '. ';
+  }
+  .ql-editor ol li.ql-indent-1 {
+    counter-reset: list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+  }
+  .ql-editor ol li.ql-indent-2 {
+    counter-increment: list-2;
+  }
+  .ql-editor ol li.ql-indent-2:before {
+    content: counter(list-2, lower-roman) '. ';
+  }
+  .ql-editor ol li.ql-indent-2 {
+    counter-reset: list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+  }
+  .ql-editor ol li.ql-indent-3 {
+    counter-increment: list-3;
+  }
+  .ql-editor ol li.ql-indent-3:before {
+    content: counter(list-3, decimal) '. ';
+  }
+  .ql-editor ol li.ql-indent-3 {
+    counter-reset: list-4 list-5 list-6 list-7 list-8 list-9;
+  }
+  .ql-editor ol li.ql-indent-4 {
+    counter-increment: list-4;
+  }
+  .ql-editor ol li.ql-indent-4:before {
+    content: counter(list-4, lower-alpha) '. ';
+  }
+  .ql-editor ol li.ql-indent-4 {
+    counter-reset: list-5 list-6 list-7 list-8 list-9;
+  }
+  .ql-editor ol li.ql-indent-5 {
+    counter-increment: list-5;
+  }
+  .ql-editor ol li.ql-indent-5:before {
+    content: counter(list-5, lower-roman) '. ';
+  }
+  .ql-editor ol li.ql-indent-5 {
+    counter-reset: list-6 list-7 list-8 list-9;
+  }
+  .ql-editor ol li.ql-indent-6 {
+    counter-increment: list-6;
+  }
+  .ql-editor ol li.ql-indent-6:before {
+    content: counter(list-6, decimal) '. ';
+  }
+  .ql-editor ol li.ql-indent-6 {
+    counter-reset: list-7 list-8 list-9;
+  }
+  .ql-editor ol li.ql-indent-7 {
+    counter-increment: list-7;
+  }
+  .ql-editor ol li.ql-indent-7:before {
+    content: counter(list-7, lower-alpha) '. ';
+  }
+  .ql-editor ol li.ql-indent-7 {
+    counter-reset: list-8 list-9;
+  }
+  .ql-editor ol li.ql-indent-8 {
+    counter-increment: list-8;
+  }
+  .ql-editor ol li.ql-indent-8:before {
+    content: counter(list-8, lower-roman) '. ';
+  }
+  .ql-editor ol li.ql-indent-8 {
+    counter-reset: list-9;
+  }
+  .ql-editor ol li.ql-indent-9 {
+    counter-increment: list-9;
+  }
+  .ql-editor ol li.ql-indent-9:before {
+    content: counter(list-9, decimal) '. ';
+  }
+  .ql-editor .ql-indent-1:not(.ql-direction-rtl) {
+    padding-left: 3em;
+  }
+  .ql-editor li.ql-indent-1:not(.ql-direction-rtl) {
+    padding-left: 4.5em;
+  }
+  .ql-editor .ql-indent-1.ql-direction-rtl.ql-align-right {
+    padding-right: 3em;
+  }
+  .ql-editor li.ql-indent-1.ql-direction-rtl.ql-align-right {
+    padding-right: 4.5em;
+  }
+  .ql-editor .ql-indent-2:not(.ql-direction-rtl) {
+    padding-left: 6em;
+  }
+  .ql-editor li.ql-indent-2:not(.ql-direction-rtl) {
+    padding-left: 7.5em;
+  }
+  .ql-editor .ql-indent-2.ql-direction-rtl.ql-align-right {
+    padding-right: 6em;
+  }
+  .ql-editor li.ql-indent-2.ql-direction-rtl.ql-align-right {
+    padding-right: 7.5em;
+  }
+  .ql-editor .ql-indent-3:not(.ql-direction-rtl) {
+    padding-left: 9em;
+  }
+  .ql-editor li.ql-indent-3:not(.ql-direction-rtl) {
+    padding-left: 10.5em;
+  }
+  .ql-editor .ql-indent-3.ql-direction-rtl.ql-align-right {
+    padding-right: 9em;
+  }
+  .ql-editor li.ql-indent-3.ql-direction-rtl.ql-align-right {
+    padding-right: 10.5em;
+  }
+  .ql-editor .ql-indent-4:not(.ql-direction-rtl) {
+    padding-left: 12em;
+  }
+  .ql-editor li.ql-indent-4:not(.ql-direction-rtl) {
+    padding-left: 13.5em;
+  }
+  .ql-editor .ql-indent-4.ql-direction-rtl.ql-align-right {
+    padding-right: 12em;
+  }
+  .ql-editor li.ql-indent-4.ql-direction-rtl.ql-align-right {
+    padding-right: 13.5em;
+  }
+  .ql-editor .ql-indent-5:not(.ql-direction-rtl) {
+    padding-left: 15em;
+  }
+  .ql-editor li.ql-indent-5:not(.ql-direction-rtl) {
+    padding-left: 16.5em;
+  }
+  .ql-editor .ql-indent-5.ql-direction-rtl.ql-align-right {
+    padding-right: 15em;
+  }
+  .ql-editor li.ql-indent-5.ql-direction-rtl.ql-align-right {
+    padding-right: 16.5em;
+  }
+  .ql-editor .ql-indent-6:not(.ql-direction-rtl) {
+    padding-left: 18em;
+  }
+  .ql-editor li.ql-indent-6:not(.ql-direction-rtl) {
+    padding-left: 19.5em;
+  }
+  .ql-editor .ql-indent-6.ql-direction-rtl.ql-align-right {
+    padding-right: 18em;
+  }
+  .ql-editor li.ql-indent-6.ql-direction-rtl.ql-align-right {
+    padding-right: 19.5em;
+  }
+  .ql-editor .ql-indent-7:not(.ql-direction-rtl) {
+    padding-left: 21em;
+  }
+  .ql-editor li.ql-indent-7:not(.ql-direction-rtl) {
+    padding-left: 22.5em;
+  }
+  .ql-editor .ql-indent-7.ql-direction-rtl.ql-align-right {
+    padding-right: 21em;
+  }
+  .ql-editor li.ql-indent-7.ql-direction-rtl.ql-align-right {
+    padding-right: 22.5em;
+  }
+  .ql-editor .ql-indent-8:not(.ql-direction-rtl) {
+    padding-left: 24em;
+  }
+  .ql-editor li.ql-indent-8:not(.ql-direction-rtl) {
+    padding-left: 25.5em;
+  }
+  .ql-editor .ql-indent-8.ql-direction-rtl.ql-align-right {
+    padding-right: 24em;
+  }
+  .ql-editor li.ql-indent-8.ql-direction-rtl.ql-align-right {
+    padding-right: 25.5em;
+  }
+  .ql-editor .ql-indent-9:not(.ql-direction-rtl) {
+    padding-left: 27em;
+  }
+  .ql-editor li.ql-indent-9:not(.ql-direction-rtl) {
+    padding-left: 28.5em;
+  }
+  .ql-editor .ql-indent-9.ql-direction-rtl.ql-align-right {
+    padding-right: 27em;
+  }
+  .ql-editor li.ql-indent-9.ql-direction-rtl.ql-align-right {
+    padding-right: 28.5em;
+  }

@@ -1,5 +1,5 @@
 /*resources/css/app.css*/
-
+@import "./quill-darkmode.css";
 @import './../../vendor/power-components/livewire-powergrid/dist/tailwind.css';
 
 @tailwind base;

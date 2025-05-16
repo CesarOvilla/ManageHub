@@ -42,7 +42,7 @@ return [
         [
             'label' => 'Tickets',
             'icon' => 'ticket',
-            'route' => 'dashboard',
+            'route' => 'dashboard.tickets.index',
             'active_route' => 'dashboard.tickets.*',
 
         ],

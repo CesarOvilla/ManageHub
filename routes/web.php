@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\ProjectsController;
+use App\Http\Controllers\Dashboard\TicketController;
 use App\Http\Controllers\Dashboard\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,5 +39,15 @@ Route::middleware([
         Route::get('create', 'create')->name('create');
         Route::get('{project}/edit', 'edit')->name('edit');
         Route::get('{project}/show', 'show')->name('show');
+    });
+
+    Route::prefix('dashboard/tickets')
+    ->as('dashboard.tickets.')
+    ->controller(TicketController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::get('{ticket}/edit', 'edit')->name('edit');
+        Route::get('{ticket}/show', 'show')->name('show');
     });
 });

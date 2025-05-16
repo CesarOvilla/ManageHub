@@ -64,4 +64,8 @@ class Project extends Model
         return $this->users()->wherePivot('role', Roles::CLIENT)->first();
     }
 
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    }
 }

@@ -44,3 +44,30 @@ Breadcrumbs::for('dashboard.projects.edit', function (BreadcrumbTrail $trail, $p
     $trail->parent('dashboard.projects.show', $project);
     $trail->push('Editar - ' . $project->name, route('dashboard.projects.edit', $project));
 });
+
+
+
+// ! breadcrumbs de tickets
+
+
+
+// dashboard >  > tickets
+Breadcrumbs::for('dashboard.tickets.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push(__('Tickets'), route('dashboard.tickets.index'));
+});
+
+Breadcrumbs::for('dashboard.tickets.create', function ($trail) {
+    $trail->parent('dashboard.tickets.index');
+    $trail->push(__('Agregar ticket'), route('dashboard.tickets.create'));
+});
+
+Breadcrumbs::for('dashboard.tickets.edit', function ($trail, $ticket) {
+    $trail->parent('dashboard.tickets.index');
+    $trail->push('Ticket - #' . $ticket->id, route('dashboard.tickets.edit', $ticket));
+});
+
+Breadcrumbs::for('dashboard.tickets.show', function (BreadcrumbTrail $trail, $ticket) {
+    $trail->parent('dashboard.tickets.index');
+    $trail->push('Detalles - Ticket - #' . $ticket->id, route('dashboard.tickets.show', $ticket));
+});

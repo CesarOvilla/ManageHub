@@ -1,4 +1,4 @@
-<nav class="fixed bottom-0 start-0 top-0 z-50 flex h-full flex-col transition-all duration-300 ease-in-out border-r-8 bg-white dark:bg-gray-900 border-blue-900/10 dark:border-gray-700"
+<nav class="fixed bottom-0 start-0 top-0 z-40 flex h-full flex-col transition-all duration-300 ease-in-out border-r-8 bg-white dark:bg-gray-900 border-blue-900/10 dark:border-gray-700"
     :class="{
         'translate-x-0': mobileSidebarOpen,
         '-translate-x-full': !mobileSidebarOpen,

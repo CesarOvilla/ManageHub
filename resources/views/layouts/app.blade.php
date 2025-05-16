@@ -21,6 +21,17 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+
+    <!-- Include the Quill library -->
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+    <!-- Include your favorite highlight.js stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
+        rel="stylesheet">
+
+
     <tallstackui:script />
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -30,7 +41,8 @@
 </head>
 
 <body x-data="sidebarLayout()" x-init="init()" x-cloak class="font-sans antialiased">
-
+    <x-ts-dialog />
+    <x-ts-toast />
     <x-banner />
     <div class="flex flex-col min-h-screen w-full">
         @include('components.navigation.sidebar')
