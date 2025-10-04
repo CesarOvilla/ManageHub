@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Deliverable;
 use App\Models\Project;
 
 class ProjectsController extends Controller
@@ -22,8 +23,8 @@ class ProjectsController extends Controller
         return view('dashboard.projects.edit', compact('project'));
     }
 
-    public function show(Project $project)
+    public function show(Project $project, ?Deliverable $deliverable = null)
     {
-        return view('dashboard.projects.show', compact('project'));
+        return view('dashboard.projects.show', compact('project', 'deliverable'));
     }
 }

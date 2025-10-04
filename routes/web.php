@@ -40,7 +40,7 @@ Route::middleware([
             Route::get('/', 'index')->name('index');
             Route::get('create', 'create')->name('create');
             Route::get('{project}/edit', 'edit')->name('edit');
-            Route::get('{project}/show', 'show')->name('show');
+            Route::get('{project}/show/{deliverable?}', 'show')->name('show');
         });
 
     Route::prefix('dashboard/tickets')
